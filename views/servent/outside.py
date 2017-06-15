@@ -14,7 +14,6 @@ from views.servent.S_login import Ui_S_Login
 from models.servent import HeartBeat,Sensor
 from models.servent.Servent import S_servent,myroom
 from PyQt5.QtWidgets import QMessageBox,QMainWindow
-from client import c
 
 class Ui_MainWindow(QMainWindow):
     shutdon = False
@@ -105,7 +104,7 @@ class Ui_MainWindow(QMainWindow):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
         self.heart = HeartBeat.HeartBeat()
-
+        from client import c
         c._connectFailed.connect(self.connectFailed)
 
 
@@ -136,6 +135,7 @@ class Ui_MainWindow(QMainWindow):
             self.heart.timerStop()
             self.sensor.timerStop()
             self.boardwidget.timer.stop()
+            from client import c
             c.closeCon()
         except:
             print("未登入")
@@ -186,6 +186,7 @@ class Ui_MainWindow(QMainWindow):
         if button == QMessageBox.Cancel:
             self.shutdown_request()
         elif button == QMessageBox.Ok:
+            from client import c
             c.reconnect()
     #关机处理
     #def shutdown_ok(self):
