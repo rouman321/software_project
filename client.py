@@ -63,7 +63,7 @@ class communicate(QObject):
         self.send(root.toxml() + '\n')
 
     def Login(self,Name,Password,Client_No):
-        self.Temp_Submit(1,Client_No,25)
+        self.Temp_Submit(3,Client_No,25)
         #self._haslogged.emit(1,Name, Password, 1)
         doc = Dom.Document()
         root = doc.createElement("Login")

@@ -260,14 +260,9 @@ class Ui_S_Board(QtWidgets.QWidget):
             self.dtshow_hot.show()
             self.dtshow_cold.hide()
             self.modelshow.setText("供暖")
-
-    def painting(self):
-        self.getCurrentState() #更新数据
-        print("painting")
-        self.dr.test(self.sysT,self.targetT)
-        self.rtshow.setText("%.2f℃" % self.sysT)
-        if(self.sysModel == 1):
-            index_temp=self.dtshow_hot.findText('%d' % int(self.targetT))
+        self.getCurrentState()  # 更新数据
+        if (self.sysModel == 1):
+            index_temp = self.dtshow_hot.findText('%d' % int(self.targetT))
             self.dtshow_hot.setCurrentIndex(index_temp)
         else:
             index_temp = self.dtshow_cold.findText('%d' % int(self.targetT))
@@ -281,6 +276,12 @@ class Ui_S_Board(QtWidgets.QWidget):
         index_temp = self.windshow.findText(ww)
         self.windshow.setCurrentIndex(index_temp)
 
+    def painting(self):
+        self.getCurrentState() #更新数据
+        print("painting")
+        self.dr.test(self.sysT,self.targetT)
+        self.rtshow.setText("%.2f℃" % self.sysT)
+
         if (self.sysW == 1):
             ww = 'low'
         elif (self.sysW == 2):
@@ -291,9 +292,9 @@ class Ui_S_Board(QtWidgets.QWidget):
             ww= "不送风"
         if (self.start_blowing == 0):
             self.windstate.setText("待机中")
+            ww = "不送风"
         else:
             self.windstate.setText("运行中")
-            ww = "不送风"
         self.rwshow.setText(ww)
 
     def wind_change(self):
