@@ -245,6 +245,13 @@ class communicate(QObject):
 
         self.broadcast(root.toxml() + '\n')
 
+    def closeCon(self):
+        for (soc,addr) in self.socket_list:
+            soc.shutdown(socket.SHUT_RDWR)
+            soc.close()
+        self.soc.close()
+        print("to close server")
+
 class receiver_thread(threading.Thread):
     def __init__(self,conn,addr):
         threading.Thread.__init__(self)
@@ -255,15 +262,16 @@ class receiver_thread(threading.Thread):
 
     def run(self):
         print("Listen start")
-        while(True):
+        connectAlive = True
+        while (connectAlive):
             try:
                 data = self.conn.recv(1024)
                 print("data",data)
                 server.recv(data,self.conn,self.addr)
             except:
                 #print(sys.exc_info())
+                connectAlive = False
                 pass
-                   
 
 class connector_thread(threading.Thread):
     def __init__(self):
@@ -272,13 +280,18 @@ class connector_thread(threading.Thread):
 
     def run(self):
         print("Listen start")
-        while(True):
-            conn, addr = server.soc.accept()
-            conn.settimeout(10)
-            print("connected:",conn,addr) #later this part should be moved to communicate.recv() when package is Login
-            if (conn,addr) not in server.socket_list:
-                server.socket_list.append((conn,addr))
-                receiver_thread(conn,addr).start()
+        connectAlive = True
+        while (connectAlive):
+            try:
+                conn, addr = server.soc.accept()
+                conn.settimeout(10)
+                print("connected:",conn,addr) #later this part should be moved to communicate.recv() when package is Login
+                if (conn,addr) not in server.socket_list:
+                    server.socket_list.append((conn,addr))
+                    receiver_thread(conn,addr).start()
+            except:
+                connectAlive = False
+                print("连接已断开")
             
 server = communicate()
 connector_thread().start()

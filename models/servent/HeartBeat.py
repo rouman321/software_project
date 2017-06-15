@@ -20,7 +20,6 @@ class HeartBeat:
         c.temp_freq_change.connect(self.freq_change)
 
     def state_update(self):
-        print("current freq is:", self.current_interval)
         if self.target == None:
             return
         print("current freq is:",self.current_interval)

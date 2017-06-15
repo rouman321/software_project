@@ -12,7 +12,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtCore import *
 from views.main import M_statusDisplay, M_subMonitor, M_report, M_insertuser,M_login
 from models.main.HeartBeat import HeartBeat
-from PyQt5.QtWidgets import *
+from server import server
 import sys
 import datetime
 
@@ -189,6 +189,8 @@ class M_MainWindow(object):
     def close(self):
         self.centralwidget.hide()
         self.closeWidget.show()
+        server.closeCon()
+        self.HeartBeat.timer.stop()
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
