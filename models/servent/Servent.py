@@ -16,9 +16,9 @@ class S_servent :
         #根据系统工作模式调整室温初态
         if self.sysModel == 1: #冬季，制热
             self.targetT = 28.0
-            self.sysT = 20.0
+            self.sysT = 22.0
         else:
-            self.targetT = 20.0
+            self.targetT = 22.0
             self.sysT = 28.0
         self.loggedOn = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         self.eng_cost = 0.00

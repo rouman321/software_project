@@ -20,41 +20,87 @@ class Ui_S_Board(QtWidgets.QWidget):
     def setupUi(self, parent,servent):
         self.S_Board = QtWidgets.QWidget(parent) #生成在父界面上
         self.S_Board.setObjectName("S_Board")
-        self.S_Board.resize(600, 450)
-        self.S_Board.setGeometry(QtCore.QRect(0,30,600,450))  #展示窗口定位
-
+        self.S_Board.resize(1200, 590)
+        self.S_Board.setGeometry(QtCore.QRect(0,70,1200,590))  #展示窗口定位
+        jpeg = QtGui.QPixmap()
+        jpeg.load("pictures/servent/信息背景.jpg")
+        palette1 = QtGui.QPalette()
+        palette1.setBrush(self.S_Board.backgroundRole(), QtGui.QBrush(jpeg))
+        self.S_Board.setPalette(palette1)
+        self.S_Board.setAutoFillBackground(True)
 
         self.windshow = QtWidgets.QComboBox(self.S_Board)
-        self.windshow.setGeometry(QtCore.QRect(70, 0, 69, 22))
+        self.windshow.setGeometry(QtCore.QRect(350, 430, 110, 30))
+        self.windshow.setStyleSheet("border-radius:3px;padding:2px 4px;"
+                                       "background-color: rgb(91,155,213,190);"
+                                       "color:rgb(255,255,255);font: 9pt '微软雅黑'}")
         self.windshow.setObjectName("windshow")
         self.windshow.addItem("")
         self.windshow.addItem("")
         self.windshow.addItem("")
-        self.windstate = QtWidgets.QLabel(self.S_Board)
-        self.windstate.setGeometry(QtCore.QRect(145, 0, 54, 21))
+
+
+        self.windstate = QtWidgets.QLabel(self.S_Board)    #当前状态
+        self.windstate.setGeometry(QtCore.QRect(1000, 70, 150, 50))
         self.windstate.setStyleSheet("font: 75 12pt \"微软雅黑\";")
+        # self.windlabel.setAlignment(QtCore.Qt.AlignCenter)
+        pe = QtGui.QPalette()
+        pe.setColor(QtGui.QPalette.WindowText, QtCore.Qt.white)  # 设置字体颜色
+        self.windstate.setPalette(pe)
         self.windstate.setObjectName("windstate")
-        self.windlabel = QtWidgets.QLabel(self.S_Board)
-        self.windlabel.setGeometry(QtCore.QRect(10, 0, 54, 21))
-        self.windlabel.setStyleSheet("font: 75 12pt \"微软雅黑\";")
-        self.windlabel.setObjectName("windlabel")
+
+        # self.wslabel = QtWidgets.QLabel(self.S_Board)  # 当前状态
+        # self.wslabel.setGeometry(QtCore.QRect(800, 100, 150, 50))
+        # self.wslabel.setStyleSheet("font: 75 20pt \"微软雅黑\";")
+        # # self.windlabel.setAlignment(QtCore.Qt.AlignCenter)
+        # pe = QtGui.QPalette()
+        # pe.setColor(QtGui.QPalette.WindowText, QtCore.Qt.white)  # 设置字体颜色
+        # self.wslabel.setPalette(pe)
+        # self.wslabel.setObjectName("windstate")
+
+
+        # self.windlabel = QtWidgets.QLabel(self.S_Board)
+        # self.windlabel.setGeometry(QtCore.QRect(200, 0, 150, 50))
+        # self.windlabel.setStyleSheet("font: 75 20pt \"微软雅黑\";")
+        # #self.windlabel.setAlignment(QtCore.Qt.AlignCenter)
+        # pe = QtGui.QPalette()
+        # pe.setColor(QtGui.QPalette.WindowText, QtCore.Qt.white)  # 设置字体颜色
+        # self.windlabel.setPalette(pe)
+        # self.windlabel.setObjectName("windlabel")
 
         self.rwshow = QtWidgets.QLabel(self.S_Board)
-        self.rwshow.setGeometry(QtCore.QRect(70, 30, 69, 22))
-        self.rwshow.setStyleSheet("font: 75 12pt \"微软雅黑\";")
+        self.rwshow.setGeometry(QtCore.QRect(100,400,150,100))
+        self.rwshow.setStyleSheet("font: 75 24pt \"微软雅黑\";")
+        # self.windlabel.setAlignment(QtCore.Qt.AlignCenter)
+        pe = QtGui.QPalette()
+        pe.setColor(QtGui.QPalette.WindowText, QtCore.Qt.white)  # 设置字体颜色
+        self.rwshow.setPalette(pe)
         self.rwshow.setObjectName("rwshow")
-        self.rwlabel = QtWidgets.QLabel(self.S_Board)
-        self.rwlabel.setGeometry(QtCore.QRect(10, 30, 54, 21))
-        self.rwlabel.setStyleSheet("font: 75 12pt \"微软雅黑\";")
-        self.rwlabel.setObjectName("rwlabel")
 
-        self.dtlabel = QtWidgets.QLabel(self.S_Board)
-        self.dtlabel.setGeometry(QtCore.QRect(200, 0, 54, 21))
-        self.dtlabel.setStyleSheet("font: 75 12pt \"微软雅黑\";")
-        self.dtlabel.setObjectName("dtlabel")
+        # self.rwlabel = QtWidgets.QLabel(self.S_Board)
+        # self.rwlabel.setGeometry(QtCore.QRect(200, 100, 150, 50))
+        # self.rwlabel.setStyleSheet("font: 75 20pt \"微软雅黑\";")
+        # # self.windlabel.setAlignment(QtCore.Qt.AlignCenter)
+        # pe = QtGui.QPalette()
+        # pe.setColor(QtGui.QPalette.WindowText, QtCore.Qt.white)  # 设置字体颜色
+        # self.rwlabel.setPalette(pe)
+        # self.rwlabel.setObjectName("rwlabel")
+
+        # self.dtlabel = QtWidgets.QLabel(self.S_Board)
+        # self.dtlabel.setGeometry(QtCore.QRect(500, 0, 150, 50))
+        # self.dtlabel.setStyleSheet("font: 75 20pt \"微软雅黑\";")
+        # # self.windlabel.setAlignment(QtCore.Qt.AlignCenter)
+        # pe = QtGui.QPalette()
+        # pe.setColor(QtGui.QPalette.WindowText, QtCore.Qt.white)  # 设置字体颜色
+        # self.dtlabel.setPalette(pe)
+        # self.dtlabel.setObjectName("dtlabel")
         self.dtshow_cold = QtWidgets.QComboBox(self.S_Board)
-        self.dtshow_cold.setGeometry(QtCore.QRect(270, 0, 69, 22))
+        self.dtshow_cold.setGeometry(QtCore.QRect(350, 180, 110, 30))
+        self.dtshow_cold.setStyleSheet("border-radius:3px;padding:2px 4px;"
+                                       "background-color: rgb(91,155,213,190);"
+                                       "color:rgb(255,255,255);font: 9pt '微软雅黑'}")
         self.dtshow_cold.setObjectName("dtshow_cold")
+        self.dtshow_cold.addItem("25")
         self.dtshow_cold.addItem("24")
         self.dtshow_cold.addItem("23")
         self.dtshow_cold.addItem("22")
@@ -62,15 +108,11 @@ class Ui_S_Board(QtWidgets.QWidget):
         self.dtshow_cold.addItem("20")
         self.dtshow_cold.addItem("19")
         self.dtshow_cold.addItem("18")
-        self.rtlabel = QtWidgets.QLabel(self.S_Board)
-        self.rtlabel.setGeometry(QtCore.QRect(200, 40, 54, 12))
-        self.rtlabel.setStyleSheet("font: 75 12pt \"微软雅黑\";")
-        self.rtlabel.setObjectName("rtlabel")
-        self.rtshow = QtWidgets.QLabel(self.S_Board)
-        self.rtshow.setGeometry(QtCore.QRect(270, 35, 71, 21))
-        self.rtshow.setObjectName("rtshow")
         self.dtshow_hot = QtWidgets.QComboBox(self.S_Board)
-        self.dtshow_hot.setGeometry(QtCore.QRect(270, 0, 69, 22))
+        self.dtshow_hot.setGeometry(QtCore.QRect(350, 180, 110, 30))
+        self.dtshow_hot.setStyleSheet("border-radius:3px;padding:2px 4px;"
+                                       "background-color: rgb(91,155,213,190);"
+                                       "color:rgb(255,255,255);font: 9pt '微软雅黑'}")
         self.dtshow_hot.setObjectName("dtshow_hot")
         self.dtshow_hot.addItem("30")
         self.dtshow_hot.addItem("29")
@@ -78,17 +120,45 @@ class Ui_S_Board(QtWidgets.QWidget):
         self.dtshow_hot.addItem("27")
         self.dtshow_hot.addItem("26")
         self.dtshow_hot.addItem("25")
-        self.modellabel = QtWidgets.QLabel(self.S_Board)
-        self.modellabel.setGeometry(QtCore.QRect(400, 30, 31, 31))
-        self.modellabel.setStyleSheet("font: 75 12pt \"微软雅黑\";")
-        self.modellabel.setObjectName("modellabel")
+
+        # self.rtlabel = QtWidgets.QLabel(self.S_Board)
+        # self.rtlabel.setGeometry(QtCore.QRect(500, 100, 150, 50))
+        # self.rtlabel.setStyleSheet("font: 75 20pt \"微软雅黑\";")
+        # # self.windlabel.setAlignment(QtCore.Qt.AlignCenter)
+        # pe = QtGui.QPalette()
+        # pe.setColor(QtGui.QPalette.WindowText, QtCore.Qt.white)  # 设置字体颜色
+        # self.rtlabel.setPalette(pe)
+        # self.rtlabel.setObjectName("rtlabel")
+        self.rtshow = QtWidgets.QLabel(self.S_Board)
+        self.rtshow.setGeometry(QtCore.QRect(90,150,180,100))
+        self.rtshow.setStyleSheet("font: 75 24pt \"微软雅黑\";")
+        # self.windlabel.setAlignment(QtCore.Qt.AlignCenter)
+        pe = QtGui.QPalette()
+        pe.setColor(QtGui.QPalette.WindowText, QtCore.Qt.white)  # 设置字体颜色
+        self.rtshow.setPalette(pe)
+        self.rtshow.setObjectName("rtshow")
+
+
+
+        # self.modellabel = QtWidgets.QLabel(self.S_Board)
+        # self.modellabel.setGeometry(QtCore.QRect(800, 0, 150, 50))
+        # self.modellabel.setStyleSheet("font: 75 20pt \"微软雅黑\";")
+        # # self.windlabel.setAlignment(QtCore.Qt.AlignCenter)
+        # pe = QtGui.QPalette()
+        # pe.setColor(QtGui.QPalette.WindowText, QtCore.Qt.white)  # 设置字体颜色
+        # self.modellabel.setPalette(pe)
+        # self.modellabel.setObjectName("modellabel")
         self.modelshow = QtWidgets.QLabel(self.S_Board)
-        self.modelshow.setGeometry(QtCore.QRect(450, 36, 71, 20))
+        self.modelshow.setGeometry(QtCore.QRect(710, 70, 100, 50))
         self.modelshow.setStyleSheet("font: 75 12pt \"微软雅黑\";")
+        # self.windlabel.setAlignment(QtCore.Qt.AlignCenter)
+        pe = QtGui.QPalette()
+        pe.setColor(QtGui.QPalette.WindowText, QtCore.Qt.white)  # 设置字体颜色
+        self.modelshow.setPalette(pe)
         self.modelshow.setObjectName("modelshow")
 
         self.gridLayoutWidget = QtWidgets.QWidget(self.S_Board)
-        self.gridLayoutWidget.setGeometry(QtCore.QRect(0, 60, 600, 390))  # 定义gridLayout控件的大小和位置，4个数字分别为左边坐标，上边坐标，长，宽
+        self.gridLayoutWidget.setGeometry(QtCore.QRect(550, 140, 600, 390))  # 定义gridLayout控件的大小和位置，4个数字分别为左边坐标，上边坐标，长，宽
         self.gridLayoutWidget.setObjectName("gridLayoutWidget")
         self.gridLayout_2 = QtWidgets.QGridLayout(self.gridLayoutWidget)
         self.gridLayout_2.setContentsMargins(0, 0, 0, 0)
@@ -113,7 +183,6 @@ class Ui_S_Board(QtWidgets.QWidget):
         # 最后，调用show方法呈现图形
 
         self.controller = S_BoardController(servent)
-
 
         self.retranslateUi(self.S_Board)
         QtCore.QMetaObject.connectSlotsByName(self.S_Board)
@@ -153,18 +222,19 @@ class Ui_S_Board(QtWidgets.QWidget):
         self.windshow.setItemText(1, _translate("S_Board", "mid"))
         self.windshow.setItemText(2, _translate("S_Board", "low"))
         self.windstate.setText(_translate("S_Board", "待机"))
-        self.windlabel.setText(_translate("S_Board", "风速"))
+        # self.windlabel.setText(_translate("S_Board", "目标风速"))
         self.rwshow.setText(_translate("S_Board", "mid"))
-        self.rwlabel.setText(_translate("S_Board", "实际风速"))
-        self.dtlabel.setText(_translate("S_Board", "目标温度"))
-        self.dtshow_cold.setItemText(0, _translate("S_Board", "24"))
-        self.dtshow_cold.setItemText(1, _translate("S_Board", "23"))
-        self.dtshow_cold.setItemText(2, _translate("S_Board", "22"))
-        self.dtshow_cold.setItemText(3, _translate("S_Board", "21"))
-        self.dtshow_cold.setItemText(4, _translate("S_Board", "20"))
-        self.dtshow_cold.setItemText(5, _translate("S_Board", "19"))
-        self.dtshow_cold.setItemText(6, _translate("S_Board", "18"))
-        self.rtlabel.setText(_translate("S_Board", "实际温度"))
+        # self.rwlabel.setText(_translate("S_Board", "实际风速"))
+        # self.dtlabel.setText(_translate("S_Board", "目标温度"))
+        self.dtshow_cold.setItemText(0, _translate("S_Board", "25"))
+        self.dtshow_cold.setItemText(1, _translate("S_Board", "24"))
+        self.dtshow_cold.setItemText(2, _translate("S_Board", "23"))
+        self.dtshow_cold.setItemText(3, _translate("S_Board", "22"))
+        self.dtshow_cold.setItemText(4, _translate("S_Board", "21"))
+        self.dtshow_cold.setItemText(5, _translate("S_Board", "20"))
+        self.dtshow_cold.setItemText(6, _translate("S_Board", "19"))
+        self.dtshow_cold.setItemText(7, _translate("S_Board", "18"))
+        # self.rtlabel.setText(_translate("S_Board", "实际温度"))
         self.rtshow.setText(_translate("S_Board", "29度"))
         self.dtshow_hot.setItemText(0, _translate("S_Board", "30"))
         self.dtshow_hot.setItemText(1, _translate("S_Board", "29"))
@@ -172,8 +242,9 @@ class Ui_S_Board(QtWidgets.QWidget):
         self.dtshow_hot.setItemText(3, _translate("S_Board", "27"))
         self.dtshow_hot.setItemText(4, _translate("S_Board", "26"))
         self.dtshow_hot.setItemText(5, _translate("S_Board", "25"))
-        self.modellabel.setText(_translate("S_Board", "模式"))
+        # self.modellabel.setText(_translate("S_Board", "当前模式"))
         self.modelshow.setText(_translate("S_Board", "制冷"))
+        # self.wslabel.setText(_translate("S_Board", "当前状态"))
 
     def hide(self):
         self.S_Board.hide()
@@ -189,14 +260,9 @@ class Ui_S_Board(QtWidgets.QWidget):
             self.dtshow_hot.show()
             self.dtshow_cold.hide()
             self.modelshow.setText("供暖")
-
-    def painting(self):
-        self.getCurrentState() #更新数据
-        print("painting")
-        self.dr.test(self.sysT,self.targetT)
-        self.rtshow.setText("%f度" % self.sysT)
-        if(self.sysModel == 1):
-            index_temp=self.dtshow_hot.findText('%d' % int(self.targetT))
+        self.getCurrentState()  # 更新数据
+        if (self.sysModel == 1):
+            index_temp = self.dtshow_hot.findText('%d' % int(self.targetT))
             self.dtshow_hot.setCurrentIndex(index_temp)
         else:
             index_temp = self.dtshow_cold.findText('%d' % int(self.targetT))
@@ -209,10 +275,13 @@ class Ui_S_Board(QtWidgets.QWidget):
             ww = 'high'
         index_temp = self.windshow.findText(ww)
         self.windshow.setCurrentIndex(index_temp)
-        if(self.start_blowing == 0):
-            self.windstate.show()
-        else:
-            self.windstate.hide()
+
+    def painting(self):
+        self.getCurrentState() #更新数据
+        print("painting")
+        self.dr.test(self.sysT,self.targetT)
+        self.rtshow.setText("%.2f℃" % self.sysT)
+
         if (self.sysW == 1):
             ww = 'low'
         elif (self.sysW == 2):
@@ -220,7 +289,12 @@ class Ui_S_Board(QtWidgets.QWidget):
         elif(self.sysW == 3):
             ww = 'high'
         else:
-            ww = '不送风'
+            ww= "不送风"
+        if (self.start_blowing == 0):
+            self.windstate.setText("待机中")
+            ww = "不送风"
+        else:
+            self.windstate.setText("运行中")
         self.rwshow.setText(ww)
 
     def wind_change(self):

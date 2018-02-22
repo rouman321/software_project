@@ -35,7 +35,7 @@ class Sensor:
         #根据模式假定风温外温
         if (self.servent.sysModel == 0):#制冷
             self.wind_temp = 18
-            self.extern_temp = 35
+            self.extern_temp = 30
         elif (self.servent.sysModel == 1):#制热
             self.wind_temp = 30
             self.extern_temp = 15
@@ -43,3 +43,6 @@ class Sensor:
         sT = self.servent.sysT + 6*self.rate*self.wind_lv*(self.wind_temp-self.servent.sysT) + \
                             self.rate*(self.extern_temp-self.servent.sysT)
         self.servent.update_rt(sT)
+
+    def timerStop(self):
+        self.timer.stop()

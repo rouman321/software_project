@@ -20,17 +20,23 @@ class Ui_SubMonitor(object):
 
     def setupUi(self, MainWindow):
         self.reflashTimer = QTimer()
-        self.reflashTimer.setInterval(1000)
+        self.reflashTimer.setInterval(2000)
         self.reflashTimer.timeout.connect(self.updateData)
         self.reflashTimer.start()
 
         self.SubMonitor = QWidget(MainWindow)
         self.SubMonitor.setObjectName("SubMonitor")
-        self.SubMonitor.resize(990, 500)
-        self.SubMonitor.setGeometry(QtCore.QRect(30, 30, 990, 500))
+        self.SubMonitor.resize(1200, 590)
+        self.SubMonitor.setGeometry(QtCore.QRect(0, 70, 1200, 590))
+        jpeg = QtGui.QPixmap()
+        jpeg.load("pictures/MonitorBg.png")
+        palette1 = QtGui.QPalette()
+        palette1.setBrush(self.SubMonitor.backgroundRole(), QtGui.QBrush(jpeg))
+        self.SubMonitor.setPalette(palette1);
+        self.SubMonitor.setAutoFillBackground(True)
 
         self.stack = QtWidgets.QStackedWidget(self.SubMonitor)
-        self.stack.setGeometry(QtCore.QRect(30, 30, 800, 400))
+        self.stack.setGeometry(QtCore.QRect(100, 100, 1000, 390))
 
         # self.showWidget=QWidget(self.SubMonitor)
         # self.showWidget.setObjectName("showWidget")
@@ -43,9 +49,9 @@ class Ui_SubMonitor(object):
         # self.monitorWidget.setObjectName("monitorWidget")
 
 
-        self.labeltest = QtWidgets.QLabel(self.SubMonitor)
-        self.labeltest.setGeometry(QtCore.QRect(20, 30, 81, 18))
-        self.labeltest.setObjectName("labeltest")
+        # self.labeltest = QtWidgets.QLabel(self.SubMonitor)
+        # self.labeltest.setGeometry(QtCore.QRect(20, 30, 81, 18))
+        # self.labeltest.setObjectName("labeltest")
 
         self.updateData()
 
@@ -99,7 +105,7 @@ class Ui_SubMonitor(object):
     def retranslateUi(self, SubMonitor):
         _translate = QtCore.QCoreApplication.translate
         SubMonitor.setWindowTitle(_translate("SubMonitor", "Form"))
-        self.labeltest.setText(_translate("SubMonitor", "监视界面"))
+        # self.labeltest.setText(_translate("SubMonitor", "监视界面"))
    ########刷新数据#########
     def updateData(self):
         del self.messagelist[:]
@@ -131,10 +137,15 @@ class Ui_SubMonitor(object):
             ###while x <3:
             #print("a")
             roomnoLabel = QtWidgets.QLabel()
+            roomnoLabel.setStyleSheet("QLabel{color:rgb(255,255,255);font: 75 12pt \"微软雅黑\";}")
             idLabel = QtWidgets.QLabel()
+            idLabel.setStyleSheet("QLabel{color:rgb(255,255,255);font: 75 12pt \"微软雅黑\";}")
             statuLabel = QtWidgets.QLabel()
+            statuLabel.setStyleSheet("QLabel{color:rgb(255,255,255);font: 75 12pt \"微软雅黑\";}")
             tempLabel = QtWidgets.QLabel()
+            tempLabel.setStyleSheet("QLabel{color:rgb(255,255,255);font: 75 12pt \"微软雅黑\";}")
             veloLabel = QtWidgets.QLabel()
+            veloLabel.setStyleSheet("QLabel{color:rgb(255,255,255);font: 75 12pt \"微软雅黑\";}")
 
             roomnoLabel.setText(self.messagelist[x][0])
             idLabel.setText(self.messagelist[x][1])

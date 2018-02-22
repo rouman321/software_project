@@ -1,8 +1,9 @@
 ﻿*.pyc
 
 
-
+__pycache__
 test.py
 
 static
+.idea
 *.xml

@@ -29,105 +29,123 @@ class Ui_StatusDisplay(QWidget):
         self.reflashTimer.timeout.connect(self.showCurrentRoom)
         self.reflashTimer.start()
 
-        self.StatusDisplay=QWidget(MainWindow)
+        self.StatusDisplay = QWidget(MainWindow)
         self.StatusDisplay.setObjectName("StatusDisplay")
-        self.StatusDisplay.resize(990, 500)
-        self.StatusDisplay.setGeometry(QtCore.QRect(30,30,990,500))
-        '''
-        self.defaultWidget = QtWidgets.QWidget(self.StatusDisplay)
-        self.defaultWidget.setGeometry(QtCore.QRect(30, 30, 991, 501))
-        self.defaultWidget.setObjectName("defaultWidget")
-       '''
-        self.statusWidget = QtWidgets.QWidget(self.StatusDisplay)
-        self.statusWidget.setGeometry(QtCore.QRect(50, 40, 391, 421))
-        self.statusWidget.setObjectName("statusWidget")
+        self.StatusDisplay.resize(1200, 590)
+        self.StatusDisplay.setGeometry(QtCore.QRect(0, 70, 1200, 590))
+        jpeg = QtGui.QPixmap()
+        jpeg.load("pictures/StatusBg.png")
+        palette1 = QtGui.QPalette()
+        palette1.setBrush(self.StatusDisplay.backgroundRole(), QtGui.QBrush(jpeg))
+        self.StatusDisplay.setPalette(palette1);
+        self.StatusDisplay.setAutoFillBackground(True)
 
-        self.label = QtWidgets.QLabel(self.statusWidget)
-        self.label.setGeometry(QtCore.QRect(20, 30, 81, 18))
-        self.label.setObjectName("label")
-        self.tempLabel=QtWidgets.QLabel(self.statusWidget)
-        self.tempLabel.setGeometry(QtCore.QRect(130, 30, 81, 18))
+        self.tempLabel = QtWidgets.QLabel(self.StatusDisplay)
+        self.tempLabel.setGeometry(QtCore.QRect(650, 150, 200, 100))
         self.tempLabel.setObjectName("tempLabel")
+        self.tempLabel.setStyleSheet("QLabel{color:rgb(255,255,255);font: 75 30pt \"微软雅黑\";}")
 
-        self.label_2 = QtWidgets.QLabel(self.statusWidget)
-        self.label_2.setGeometry(QtCore.QRect(20, 120, 81, 18))
-        self.label_2.setObjectName("label_2")
-        self.veloLabel=QtWidgets.QLabel(self.statusWidget)
-        self.veloLabel.setGeometry(QtCore.QRect(130, 120, 81, 18))
+        self.veloLabel = QtWidgets.QLabel(self.StatusDisplay)
+        self.veloLabel.setGeometry(QtCore.QRect(950, 150, 150, 90))
         self.veloLabel.setObjectName("veloLabel")
+        self.veloLabel.setStyleSheet("QLabel{color:rgb(255,255,255);font: 75 24pt \"微软雅黑\";}")
 
-        self.label_3 = QtWidgets.QLabel(self.statusWidget)
-        self.label_3.setGeometry(QtCore.QRect(20, 250, 81, 18))
-        self.label_3.setObjectName("label_3")
-        self.statuslabel = QtWidgets.QLabel(self.statusWidget)
-        self.statuslabel.setGeometry(QtCore.QRect(100, 250, 81, 18))
-        self.statuslabel.setObjectName("statuslabel")
-        self.modelRadioButton = QtWidgets.QRadioButton(self.statusWidget)
-        self.modelRadioButton.setGeometry(QtCore.QRect(20, 360, 132, 22))
+        self.statuLabel = QtWidgets.QLabel(self.StatusDisplay)
+        self.statuLabel.setGeometry(QtCore.QRect(220, 195, 200, 40))
+        self.statuLabel.setObjectName("statuLabel")
+        self.statuLabel.setStyleSheet("QLabel{color:rgb(255,255,255);font: 75 12pt \"微软雅黑\";}")
+
+        self.statuWidget = QtWidgets.QWidget(self.StatusDisplay)
+        self.statuWidget.setGeometry(QtCore.QRect(75, 260, 440, 40))
+        self.statuWidget.setObjectName("statuWidget")
+
+        self.modelRadioButton = QtWidgets.QRadioButton(self.statuWidget)
+        self.modelRadioButton.setGeometry(QtCore.QRect(0, 0, 132, 34))
         self.modelRadioButton.setObjectName("radioButton")
         self.modelRadioButton.setText("制冷")
+        self.modelRadioButton.setStyleSheet("QRadioButton{color:rgb(255,255,255);font: 75 9pt \"微软雅黑\";}")
 
-        self.modelRadioButton_2 = QtWidgets.QRadioButton(self.statusWidget)
-        self.modelRadioButton_2.setGeometry(QtCore.QRect(150, 360, 132, 22))
+        self.modelRadioButton_2 = QtWidgets.QRadioButton(self.statuWidget)
+        self.modelRadioButton_2.setGeometry(QtCore.QRect(160, 0, 132, 34))
         self.modelRadioButton_2.setObjectName("radioButton_2")
         self.modelRadioButton_2.setText("制热")
+        self.modelRadioButton_2.setStyleSheet("QRadioButton{color:rgb(255,255,255);font: 75 9pt \"微软雅黑\";}")
 
-        self.ModelStraconfButton = QtWidgets.QPushButton(self.statusWidget)
-        self.ModelStraconfButton.setGeometry(QtCore.QRect(270, 360, 112, 34))
+        self.ModelStraconfButton = QtWidgets.QPushButton(self.statuWidget)
+        self.ModelStraconfButton.setGeometry(QtCore.QRect(325, 0, 112, 34))
         self.ModelStraconfButton.setObjectName("straconfButton")
-        self.ModelStraconfButton.setText("模式修改")
+        self.ModelStraconfButton.setStyleSheet(
+            "QPushButton{border-style:outset;border-radius: 10px;border-color: beige;font: bold 14px;}"
+            "QPushButton{background-image: url(pictures/statuButton.png);}"
+            "QPushButton:hover{background-image: url(pictures/statuButton.png);}"
+            "QPushButton:pressed{background-image: url(pictures/statuButton3.png);}")
         self.ModelStraconfButton.clicked.connect(self.on_ModelButton_clicked)
 
         self.roomWidget = QtWidgets.QWidget(self.StatusDisplay)
-        self.roomWidget.setGeometry(QtCore.QRect(540, 40, 391, 200))
+        self.roomWidget.setGeometry(QtCore.QRect(650, 390, 450, 100))
         self.roomWidget.setObjectName("roomWidget")
 
-        self.label_4 = QtWidgets.QLabel(self.roomWidget)
-        self.label_4.setGeometry(QtCore.QRect(0, 30, 141, 21))
-        self.label_4.setObjectName("label_4")
-        self.roomLabel=QtWidgets.QLabel(self.roomWidget)
-        self.roomLabel.setGeometry(QtCore.QRect(0, 60, 200, 100))
+        self.roomLabel = QtWidgets.QLabel(self.roomWidget)
+        self.roomLabel.setGeometry(QtCore.QRect(0, 0, 450, 100))
         self.roomLabel.setObjectName("roomLabel")
+        self.roomLabel.setStyleSheet("QLabel{color:rgb(255,255,255);font: 75 14pt \"微软雅黑\";}")
 
         ##############获取频率——spinbox############
         self.freqSpinbox = QtWidgets.QSpinBox(self.StatusDisplay)
-        self.freqSpinbox.setGeometry(QtCore.QRect(550, 400, 80, 40))
+        self.freqSpinbox.setGeometry(QtCore.QRect(145, 120, 100, 40))
         self.freqSpinbox.setObjectName("freqSpinbox")
         self.freqSpinbox.setRange(1, 20)
+        self.freqSpinbox.setStyleSheet("border-radius:3px;padding:2px 4px;background-color: rgb(91,155,213,190);color:rgb(255,255,255);font: 8pt '微软雅黑'}")
 
         self.freqButton = QtWidgets.QPushButton(self.StatusDisplay)
-        self.freqButton.setGeometry(QtCore.QRect(800, 400, 112, 34))
+        self.freqButton.setGeometry(QtCore.QRect(330, 123, 112, 34))
         self.freqButton.setObjectName("freqButton")
+        self.freqButton.setStyleSheet(
+            "QPushButton{border-style:outset;border-radius: 10px;border-color: beige;font: bold 14px;}"
+            "QPushButton{background-image: url(pictures/freqButton.png);}"
+            "QPushButton:hover{background-image: url(pictures/freqButton.png);}"
+            "QPushButton:pressed{background-image: url(pictures/freqButton3.png);}")
+
+        self.freqLabel = QtWidgets.QLabel(self.StatusDisplay)
+        self.freqLabel.setGeometry(QtCore.QRect(220, 55, 200, 40))
+        self.freqLabel.setObjectName("freqLabel")
+        self.freqLabel.setStyleSheet("QLabel{color:rgb(255,255,255);font: 75 12pt \"微软雅黑\";}")
 
        # self.freqButton.clicked.connect(self.freqChanged)
         ##############获取策略——RadioButton#################
-        self.statuWidget = QtWidgets.QWidget(self.StatusDisplay)
-        self.statuWidget.setGeometry(QtCore.QRect(540, 180, 391, 200))
-        self.statuWidget.setObjectName("statuWidget")
+        self.stratWidget = QtWidgets.QWidget(self.StatusDisplay)
+        self.stratWidget.setGeometry(QtCore.QRect(75, 410, 452, 22))
+        self.stratWidget.setObjectName("stratWidget")
 
-        self.label_5 = QtWidgets.QLabel(self.statuWidget)
-        self.label_5.setGeometry(QtCore.QRect(0, 0, 51, 18))
-        self.label_5.setObjectName("label_5")
-        self.label_5.setText("当前策略：")
-        self.stratlabel = QtWidgets.QLabel(self.statuWidget)
-        self.stratlabel.setGeometry(QtCore.QRect(130, 0, 151, 18))
-        self.stratlabel.setObjectName("stratlabel")
-
-        self.radioButton = QtWidgets.QRadioButton(self.statuWidget)
-        self.radioButton.setGeometry(QtCore.QRect(0, 100, 132, 22))
+        self.radioButton = QtWidgets.QRadioButton(self.stratWidget)
+        self.radioButton.setGeometry(QtCore.QRect(0, 0, 132, 22))
         self.radioButton.setObjectName("radioButton")
+        self.radioButton.setStyleSheet("QRadioButton{color:rgb(255,255,255);font: 75 9pt \"微软雅黑\";}")
 
-        self.radioButton_2 = QtWidgets.QRadioButton(self.statuWidget)
-        self.radioButton_2.setGeometry(QtCore.QRect(130, 100, 132, 22))
+        self.radioButton_2 = QtWidgets.QRadioButton(self.stratWidget)
+        self.radioButton_2.setGeometry(QtCore.QRect(160, 0, 132, 22))
         self.radioButton_2.setObjectName("radioButton_2")
+        self.radioButton_2.setStyleSheet("QRadioButton{color:rgb(255,255,255);font: 75 9pt \"微软雅黑\";}")
 
-        self.radioButton_3 = QtWidgets.QRadioButton(self.statuWidget)
-        self.radioButton_3.setGeometry(QtCore.QRect(260, 100, 132, 22))
+        self.radioButton_3 = QtWidgets.QRadioButton(self.stratWidget)
+        self.radioButton_3.setGeometry(QtCore.QRect(320, 0, 132, 22))
         self.radioButton_3.setObjectName("radioButton_3")
+        self.radioButton_3.setStyleSheet("QRadioButton{color:rgb(255,255,255);font: 75 9pt \"微软雅黑\";}")
+        self.radioButton_3.hide()
 
-        self.straconfButton = QtWidgets.QPushButton(self.statuWidget)
-        self.straconfButton.setGeometry(QtCore.QRect(140, 150, 112, 34))
+        self.stratLabel = QtWidgets.QLabel(self.StatusDisplay)
+        self.stratLabel.setGeometry(QtCore.QRect(220, 331, 200, 40))
+        self.stratLabel.setObjectName("stratLabel")
+        self.stratLabel.setStyleSheet("QLabel{color:rgb(255,255,255);font: 75 12pt \"微软雅黑\";}")
+
+        self.straconfButton = QtWidgets.QPushButton(self.StatusDisplay)
+        self.straconfButton.setGeometry(QtCore.QRect(250, 470, 112, 34))
         self.straconfButton.setObjectName("straconfButton")
+        self.straconfButton.setStyleSheet(
+            "QPushButton{border-style:outset;border-radius: 10px;border-color: beige;font: bold 14px;}"
+            "QPushButton{background-image: url(pictures/stratButton.png);}"
+            "QPushButton:hover{background-image: url(pictures/stratButton.png);}"
+            "QPushButton:pressed{background-image: url(pictures/stratButton3.png);}")
 
         self.showMes()
 
@@ -163,20 +181,21 @@ class Ui_StatusDisplay(QWidget):
         print("to change freq as %d" % (self.controller.freq))
         self._changedFreq.emit(self.controller.freq)
         self.controller.changeFreq()
+        self.showMes()
 
 
     def retranslateUi(self, StatusDisplay):
         _translate = QtCore.QCoreApplication.translate
         StatusDisplay.setWindowTitle(_translate("StatusDisplay", "Form"))
-        self.straconfButton.setText(_translate("StatusDisplay", "确认"))
-        self.freqButton.setText(_translate("StatusDisplay", "确认"))
-        self.label.setText(_translate("StatusDisplay", "温度："))
-        self.label_2.setText(_translate("StatusDisplay", "风速："))
-        self.label_3.setText(_translate("StatusDisplay", "工作模式："))
+        # self.straconfButton.setText(_translate("StatusDisplay", "确认"))
+        # self.freqButton.setText(_translate("StatusDisplay", "确认"))
+        # self.label.setText(_translate("StatusDisplay", "温度："))
+        # self.label_2.setText(_translate("StatusDisplay", "风速："))
+        # self.label_3.setText(_translate("StatusDisplay", "工作模式："))
         self.radioButton.setText(_translate("StatusDisplay", "时间片轮询"))
         self.radioButton_2.setText(_translate("StatusDisplay", "高速风优先"))
         self.radioButton_3.setText(_translate("StatusDisplay", "先来先服务"))
-        self.label_4.setText(_translate("StatusDisplay", "当前连接房间："))
+        # self.label_4.setText(_translate("StatusDisplay", "当前连接房间："))
 
     def showMes(self):
         del self.mconnec[:]
@@ -187,21 +206,14 @@ class Ui_StatusDisplay(QWidget):
             self.mtemp=22.0
             self.modelRadioButton.setChecked(True)
             self.modelRadioButton_2.setChecked(False)
-            self.statuslabel.setText("制冷")
+            self.statuLabel.setText("制冷")
         else:
             self.mtemp=28.0
             self.modelRadioButton.setChecked(False)
             self.modelRadioButton_2.setChecked(True)
-            self.statuslabel.setText("制热")
+            self.statuLabel.setText("制热")
 
         self.tempLabel.setText(str(self.mtemp)+'℃')
-        if self.mvelocity==0:
-            self.veloLabel.setText("低速")
-        elif self.mvelocity==1:
-            self.veloLabel.setText("中速")
-        elif self.mvelocity==2:
-            self.veloLabel.setText("高速")
-
         self.showCurrentRoom()
         #####刷新测试
         #self.roomLabel.setNum(time.clock())
@@ -210,26 +222,35 @@ class Ui_StatusDisplay(QWidget):
             self.radioButton.setChecked(True)
             self.radioButton_2.setChecked(False)
             self.radioButton_3.setChecked(False)
-            self.stratlabel.setText("时间片轮询")
+            self.stratLabel.setText("时间片轮询")
         elif self.controller.strat==2:
             self.radioButton.setChecked(False)
             self.radioButton_2.setChecked(True)
             self.radioButton_3.setChecked(False)
-            self.stratlabel.setText("高速风优先抢占")
+            self.stratLabel.setText("高速风优先抢占")
         elif self.controller.strat==3:
             self.radioButton.setChecked(False)
-            self.radioButton_2.setChecked(True)
-            self.radioButton_3.setChecked(False)
-            self.stratlabel.setText("先来先服务")
+            self.radioButton_2.setChecked(False)
+            self.radioButton_3.setChecked(True)
+            self.stratLabel.setText("先来先服务")
 
         self.freqSpinbox.setValue(self.controller.freq)
+        self.freqLabel.setNum(self.controller.freq)
 
     def showCurrentRoom(self):
         list = self.controller.getConnec()
         x = 0
         connecstr = ""
-        while x < len(list):
-            connecstr += str(list[x])
-            connecstr += "  "
+        while x<len(list):
+            connecstr+=str(list[x])
+            if(x==2):
+                connecstr += "\n"
+            else:
+                connecstr += "\t"
             x += 1
         self.roomLabel.setText(connecstr)
+
+        if connecstr == "":
+            self.veloLabel.setText("待机中")
+        else:
+            self.veloLabel.setText("工作中")

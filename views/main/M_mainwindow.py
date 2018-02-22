@@ -8,47 +8,94 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QApplication, QWidget, QPushButton
-from PyQt5.QtGui import QIcon
-from PyQt5.QtCore import Qt
+from PyQt5.QtGui import *
+from PyQt5.QtCore import *
 from views.main import M_statusDisplay, M_subMonitor, M_report, M_insertuser,M_login
 from models.main.HeartBeat import HeartBeat
-from PyQt5.QtWidgets import *
+from server import server
 import sys
 import datetime
 
 class M_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(1053, 664)
+        MainWindow.resize(1200, 750)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
+        jpeg = QtGui.QPixmap()
+        jpeg.load("pictures/background3.png")
+        palette1 = QtGui.QPalette()
+        palette1.setBrush(self.centralwidget.backgroundRole(), QtGui.QBrush(jpeg))
+        self.centralwidget.setPalette(palette1);
+        # self.centralwidget.setStyleSheet("background-image: url(pictures/background2.png); background-repeat: no-repeat; background-position: center;")
+        self.centralwidget.setAutoFillBackground(True)
+        self.centralwidget.setMaximumSize(1200, 750)
+        self.centralwidget.setMinimumSize(1200, 750)
+        self.centralwidget.isMaximized()
+        self.centralwidget.showMaximized()
+
+        self.closeWidget=QtWidgets.QWidget(MainWindow)
+        self.closeWidget.resize(1200,750)
+        jpeg = QtGui.QPixmap()
+        jpeg.load("pictures/CloseWidget.png")
+        palette1 = QtGui.QPalette()
+        palette1.setBrush(self.closeWidget.backgroundRole(), QtGui.QBrush(jpeg))
+        self.closeWidget.setPalette(palette1)
+        self.closeWidget.setAutoFillBackground(True)
+        self.closeWidget.hide()
         # 按键声明
         self.homeButton = QtWidgets.QPushButton(self.centralwidget)
-        self.homeButton.setGeometry(QtCore.QRect(0, 540, 112, 34))
+        self.homeButton.setGeometry(QtCore.QRect(125, 660, 50, 90))
         self.homeButton.setObjectName("homeButton")
+        self.homeButton.setStyleSheet("QPushButton{border-style:outset;border-radius: 10px;border-color: beige;font: bold 14px;}"
+                                      "QPushButton{background-image: url(pictures/HomeButton.png);}" 
+                                      "QPushButton:hover{background-image: url(pictures/HomeButton2.png);}" 
+                                      "QPushButton:pressed{background-image: url(pictures/HomeButton3.png);}")
         self.homeButton.setEnabled(False)
 
         self.monitorButton = QtWidgets.QPushButton(self.centralwidget)
-        self.monitorButton.setGeometry(QtCore.QRect(280, 540, 112, 34))
+        self.monitorButton.setGeometry(QtCore.QRect(425, 660, 50, 90))
         self.monitorButton.setObjectName("monitorButton")
         self.monitorButton.setEnabled(False)
+        self.monitorButton.setStyleSheet(
+            "QPushButton{border-style:outset;border-radius: 10px;border-color: beige;font: bold 14px;}"
+            "QPushButton{background-image: url(pictures/MonitorButton.png);}"
+            "QPushButton:hover{background-image: url(pictures/MonitorButton2.png);}"
+            "QPushButton:pressed{background-image: url(pictures/MonitorButton3.png);}")
 
         self.reportButton = QtWidgets.QPushButton(self.centralwidget)
-        self.reportButton.setGeometry(QtCore.QRect(140, 540, 112, 34))
+        self.reportButton.setGeometry(QtCore.QRect(725, 660, 50, 90))
         self.reportButton.setObjectName("reportButton")
         self.reportButton.setEnabled(False)
-
-        self.closeButton = QtWidgets.QPushButton(self.centralwidget)
-        self.closeButton.setGeometry(QtCore.QRect(940, 540, 112, 34))
-        self.closeButton.setObjectName("closeButton")
+        self.reportButton.setStyleSheet(
+            "QPushButton{border-style:outset;border-radius: 10px;border-color: beige;font: bold 14px;}"
+            "QPushButton{background-image: url(pictures/ReportButton.png);}"
+            "QPushButton:hover{background-image: url(pictures/ReportButton2.png);}"
+            "QPushButton:pressed{background-image: url(pictures/ReportButton3.png);}")
 
         self.insertusrButton = QtWidgets.QPushButton(self.centralwidget)
-        self.insertusrButton.setGeometry(QtCore.QRect(420, 540, 112, 34))
+        self.insertusrButton.setGeometry(QtCore.QRect(1025, 660, 50, 90))
         self.insertusrButton.setObjectName("insertusrButton")
         self.insertusrButton.setEnabled(False)
+        self.insertusrButton.setStyleSheet(
+            "QPushButton{border-style:outset;border-radius: 10px;border-color: beige;font: bold 14px;}"
+            "QPushButton{background-image: url(pictures/UserButton.png);}"
+            "QPushButton:hover{background-image: url(pictures/UserButton2.png);}"
+            "QPushButton:pressed{background-image: url(pictures/UserButton3.png);}")
+
+        self.closeButton = QtWidgets.QPushButton(self.centralwidget)
+        self.closeButton.setGeometry(QtCore.QRect(1070,10,60,55))
+        self.closeButton.setObjectName("closeButton")
+        self.closeButton.setStyleSheet(
+            "QPushButton{border-style:outset;border-radius: 10px;border-color: beige;font: bold 14px;}"
+            "QPushButton{background-image: url(pictures/CloseButton.png);}"
+            "QPushButton:hover{background-image: url(pictures/CloseButton2.png);}"
+            "QPushButton:pressed{background-image: url(pictures/CloseButton3.png);}")
+
 
         self.loginWidget=M_login.Ui_Form()
         M_login.Ui_Form.setupUi(self.loginWidget,self.centralwidget)
+
 
         self.defaultWidget = M_statusDisplay.Ui_StatusDisplay()
         M_statusDisplay.Ui_StatusDisplay.setupUi(self.defaultWidget, self.centralwidget)
@@ -73,7 +120,13 @@ class M_MainWindow(object):
         self.stack.addWidget(self.monitorWidget.SubMonitor)
         self.stack.addWidget(self.reportWidget.Report)
         self.stack.addWidget(self.insertusrWidget.insertusr)
-        self.stack.setGeometry(QtCore.QRect(30, 30, 990, 500))
+        self.stack.setGeometry(QtCore.QRect(0, 70, 1200, 590))
+        # jpeg = QtGui.QPixmap()
+        # jpeg.load("pictures/widgetbg2.png")
+        # palette1 = QtGui.QPalette()
+        # palette1.setBrush(self.stack.backgroundRole(), QtGui.QBrush(jpeg))
+        # self.stack.setPalette(palette1)
+        # self.stack.setAutoFillBackground(True)
 
         self.loginWidget._haslogged.connect(self.run)
 
@@ -93,7 +146,7 @@ class M_MainWindow(object):
         self.reportButton.clicked.connect(self.setReportWidget)
         self.insertusrButton.clicked.connect(self.setInsertWidget)
         #self.closeButton.clicked.connect(sys.exit)
-        self.closeButton.clicked.connect(self.centralwidget.close)
+        self.closeButton.clicked.connect(self.close)
 
         ''''
         self.straconfButton.clicked.connect(self.on_tellmeButton_clicked)
@@ -133,14 +186,20 @@ class M_MainWindow(object):
         self.insertusrButton.setEnabled(True)
         self.stack.show()
 
+    def close(self):
+        self.centralwidget.hide()
+        self.closeWidget.show()
+        server.closeCon()
+        self.HeartBeat.timer.stop()
+
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
-        self.homeButton.setText(_translate("MainWindow", "主页"))
-        self.monitorButton.setText(_translate("MainWindow", "监视"))
-        self.reportButton.setText(_translate("MainWindow", "报表"))
-        self.closeButton.setText(_translate("MainWindow", "关机"))
-        self.insertusrButton.setText(_translate("MainWindow", "用户登记"))
+        # self.homeButton.setText(_translate("MainWindow", "主页"))
+        # self.monitorButton.setText(_translate("MainWindow", "监视"))
+        # self.reportButton.setText(_translate("MainWindow", "报表"))
+        # self.closeButton.setText(_translate("MainWindow", "关机"))
+        # self.insertusrButton.setText(_translate("MainWindow", "用户登记"))
 
 
 

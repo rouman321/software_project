@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from client import c
-from PyQt5.QtCore import pyqtSignal,QObject
+from PyQt5.QtCore import pyqtSignal,QObject,QTimer
 
 class S_BoardController(QObject):
     _modelchanged = pyqtSignal(bool)
     sendcnt = 0
+    toTarget = 20
 
     def __init__(self,servent):
        super().__init__()
@@ -13,13 +14,23 @@ class S_BoardController(QObject):
        c.wind_change_ac.connect(self.Wind_Change_deal)
        c.fare_info_change.connect(self.Cost_Change_deal)
        c._model_change.connect(self.Model_Change_deal)
+       self.timer = QTimer()
+       self.timer.timeout.connect(self.do_Traise)
 
     #温度设置
     def T_raise(self,delta):
         #直接修改数据类
         print("T_raise into controller")
-        self.servent.update_sys(delta,self.servent.targetW,self.sysModel)
-        print("T_raise")
+        #定时器1000ms后启动，如果被重设会重新定时
+        self.timer.setInterval(1000)
+        self.toTarget = delta
+        self.timer.start()
+    #目标温度修改触发
+    def do_Traise(self):
+        print("t_raise to %d"%(self.toTarget))
+        self.servent.update_sys(self.toTarget,self.servent.targetW,self.sysModel)
+        self.timer.stop()
+
     #风速设置
     def Wind_Change(self,level):
         #调用通信类发信息

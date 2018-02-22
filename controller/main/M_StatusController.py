@@ -6,7 +6,6 @@ class StatusController:
     strat = 1  ######默认初始值，策略
     def __init__(self):
         self.new=ControlPanel()
-        self.new.setConnec()
 
     def changeFreq(self):
         self.new.setFreq(self.freq)
